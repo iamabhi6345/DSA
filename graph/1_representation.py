@@ -25,6 +25,8 @@ print(graph)
     adjacency matrix
 """
 
+# a = vertices , b= edges
+
 import sys
 a,b =map(int,sys.stdin.readline().rstrip().split(" "))
 graph = {i:set() for i in range(1,a+1)}

@@ -58,6 +58,7 @@ if __name__ == '__main__':
         
         ob = Solution()  # Corrected instance creation
         res = ob.topoSort(N, adj)  # Corrected method call
+        print(res)
         
         if check(adj, N, res):
             print(1)

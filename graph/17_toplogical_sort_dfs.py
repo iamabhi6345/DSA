@@ -15,7 +15,7 @@ class Solution:
         for i in range(V):
             if vis[i]==False:
                 self.dfs(i , adj , vis , stack)
-        
+
         ans =[]
         while (stack):
             top = stack.pop()
