@@ -1,7 +1,9 @@
 """   
+
 A bipartite graph is a graph in which the vertices can be divided into two disjoint sets,
 such that no two vertices within the same set are adjacent. In other words, it is a graph
 in which every edge connects a vertex of one set to a vertex of the other set.
+
 """
 
 
@@ -35,6 +37,4 @@ class Solution:
                 if self.__bfs(i,color,adj)==False:
                     return False
 
-        return True           
-		        
-	
+        return True
