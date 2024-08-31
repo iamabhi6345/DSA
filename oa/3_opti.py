@@ -1,7 +1,7 @@
 from collections import deque
 from typing import List
 import sys
-def bfs(graph: List[List[int]], start: int) -> List[int]:
+def bfs(graph, start) :
     n = len(graph)
     dist = [float('inf')] * n
     dist[start] = 0
@@ -16,7 +16,7 @@ def bfs(graph: List[List[int]], start: int) -> List[int]:
     
     return dist
 
-def nearest_meeting_cell(n: int, edges: List[int], c1: int, c2: int) -> int:
+def nearest_meeting_cell(n, edges, c1, c2) :
     graph = [[] for _ in range(n)]
     for i, e in enumerate(edges):
         if e != -1:
@@ -37,7 +37,6 @@ def nearest_meeting_cell(n: int, edges: List[int], c1: int, c2: int) -> int:
     
     return min_node
 
-# Input reading and function call
 n = int(sys.stdin.readline().strip())
 edges = list(map(int , sys.stdin.readline().strip().split(" ")))
 c1, c2 = map(int, sys.stdin.readline().strip().split())
