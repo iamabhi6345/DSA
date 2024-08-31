@@ -1,6 +1,8 @@
 """  
 Problem statement
-You are given an array/list 'prices' where the elements of the array represent the prices of the stock as they were yesterday and indices of the array represent minutes. Your task is to find and return the maximum profit you can make by buying and selling the stock. You can buy and sell the stock only once.
+You are given an array/list 'prices' where the elements of the array represent the prices of the stock as they 
+were yesterday and indices of the array represent minutes. Your task is to find and return the maximum profit 
+you can make by buying and selling the stock. You can buy and sell the stock only once.
 
 Note:
 
@@ -26,7 +28,8 @@ Sample Output 1:
 3
 0
 Explanation For Sample Output 1:
-For the first test case, it’s optimal to buy the stock at minute 0 and sell it at minute 3 to get a maximum profit of 3.
+For the first test case, it’s optimal to buy the stock at minute 0 and sell it at minute 3 to get a maximum 
+profit of 3.
 
 For the second test case, the maximum profit will be 0 for all possible ways of buying and selling stock.
 Sample Input 2:

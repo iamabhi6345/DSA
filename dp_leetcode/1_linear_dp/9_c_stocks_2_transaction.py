@@ -93,7 +93,7 @@ def solve(ind , buy , cap , values , n,dp):
     else:
         profit = max(values[ind]+solve(ind+1,True,cap-1,values,n,dp),
                     solve(ind+1,False,cap,values,n,dp))
-    
+
     dp[ind][buy][cap] = profit
     return dp[ind][buy][cap]
 

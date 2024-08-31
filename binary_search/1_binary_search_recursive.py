@@ -1,9 +1,8 @@
 def f(nums , l, h,target):
     if (l>h):
         return -1
-
     mid=(l+h)//2
-
+    
     if nums[mid]==target:
             return mid
     
@@ -13,7 +12,7 @@ def f(nums , l, h,target):
         return f(nums,l,mid-1,target)
 
 def search(nums: [int], target: int):
-    # write your code logic !!
+
     n=len(nums)
     low=0
     high=n-1

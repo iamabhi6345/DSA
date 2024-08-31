@@ -1,10 +1,12 @@
-"""   
+"""
+
     if there is searchand sorted then use binary search  
-    
+
+
 """
 
 def search(nums: [int], target: int):
-    # write your code logic !!
+
     n=len(nums)
     low=0
     high=n-1
@@ -16,7 +18,6 @@ def search(nums: [int], target: int):
             low=mid+1
         else:
             high=mid-1
-    
     return -1
 
 if __name__ == "__main__":

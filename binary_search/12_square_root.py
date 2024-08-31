@@ -12,13 +12,13 @@ def floorSqrt(n):
    l=1
    h=n
 
-   while(l<=h):
-      m=(l+h)//2
+   while(h-l>0.1):
+      m=(l+h)/2
       if(m*m <= n):
-         l=m+1
+         l=m
       else:
-         h=m-1
+         h=m
    
    return h
 
-print(floorSqrt(6))
+print(int(floorSqrt(16)))

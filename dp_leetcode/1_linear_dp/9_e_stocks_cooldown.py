@@ -74,8 +74,6 @@ def stockProfit(values: List[int]) -> int:
                 dp[ind][buy]=max(-values[ind]+dp[ind+1][0] ,dp[ind+1][1])
             else:
                 dp[ind][buy] = max(values[ind] + dp[ind+2][1] , dp[ind+1][0])
-
-
     return dp[0][1]
 
 
@@ -87,25 +85,23 @@ from typing import List
 def solve(ind , buy , values , n , dp):
     if ind>=n:
         return 0
-    
+
     if dp[ind][buy]!=-1:
         return dp[ind][buy]
-    
+
     if buy==True:
         profit = max ( -values[ind] + solve(ind+1 , False , values , n , dp),
                      0 + solve(ind+1 , buy , values , n,dp))
     else:
         profit = max (values[ind] + solve(ind+2 , True , values , n,dp),
                     0+solve(ind+1 , buy , values , n,dp))
-    
+
     dp[ind][buy] = profit
     return dp[ind][buy]
+
 
 def stockProfit(prices: List[int]) -> int:
     # Write your code here.
     n= len(prices)
     dp= [[-1]*2 for _ in range(n)]
     return solve(0,True,prices,n,dp)
-
-
-

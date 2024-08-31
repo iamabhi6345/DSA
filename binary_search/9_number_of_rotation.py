@@ -8,7 +8,7 @@ def findKRotation(arr : [int]) -> int:
         m=(l+h)//2
         if(arr[l]<=arr[m]):
             if(arr[l]<ans):
-                print(ans," ",arr[l])
+                # print(ans," ",arr[l])
                 ans=arr[l]
                 index=l
             l=m+1
