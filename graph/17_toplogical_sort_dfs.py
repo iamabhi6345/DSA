@@ -20,6 +20,6 @@ class Solution:
         while (stack):
             top = stack.pop()
             ans.append(top)
-        
+
         return ans
             
