@@ -17,7 +17,7 @@ class DisjointSet:
         
         if upu == upv:
             return
-
+        
         if self.rank[upu] < self.rank[upv]:
             self.parent[upu]=upv
         elif self.rank[upv] <self.rank[upu]:
@@ -25,15 +25,14 @@ class DisjointSet:
         else:
             self.parent[upu]=upv
             self.rank[upv]+=1
-
-
+    
     def union_by_size(self , u , v):
         upu=self.findUPar(u)
         upv=self.findUPar(v)
-
+        
         if upu == upv:
             return
-
+        
         if self.size[upu] < self.size[upv]:
             self.parent[upu]=upv
             self.size[upv]+=self.size[upu]
@@ -56,3 +55,4 @@ class Solution:
                 count+=1
             
         return count
+
