@@ -70,7 +70,6 @@ class Solution:
                     adjwt = i[1]
                     if vis[adjnode]==False:
                         heapq.heappush(pq , (adjwt , adjnode))
-                        
         return ans                
 
 
