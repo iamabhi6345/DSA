@@ -1,7 +1,13 @@
 """   
-Given a list of accounts of size n where each element accounts [ i ] is a list of strings, where the first element account [ i ][ 0 ]  is a name, and the rest of the elements are emails representing emails of the account.
-Geek wants you to merge these accounts. Two accounts belong to the same person if there is some common email to both accounts. Note that even if two accounts have the same name, they may belong to different people as people could have the same name. A person can have any number of accounts initially, but all of their accounts have the same name.
-After merging the accounts, return the accounts in the following format: The first element of each account is the name, and the rest of the elements are emails in sorted order.
+Given a list of accounts of size n where each element accounts [ i ] is a list of strings, where the first
+element account [ i ][ 0 ]  is a name, and the rest of the elements are emails representing emails of the
+account.
+Geek wants you to merge these accounts. Two accounts belong to the same person if there is some common email
+to both accounts. Note that even if two accounts have the same name, they may belong to different people as
+people could have the same name. A person can have any number of accounts initially, but all of their accounts 
+have the same name.
+After merging the accounts, return the accounts in the following format: The first element of each account
+is the name, and the rest of the elements are emails in sorted order.
 
 Note: Accounts themselves can be returned in any order.
 
@@ -54,6 +60,8 @@ accounts[i][0] consists of English letters.
 
 """
 
+
+"""
 
 class DisjointSet:
     def __init__(self, n):
@@ -111,6 +119,7 @@ class Solution:
         for mail, node in mapMailNode.items():
             root = ds.findUPar(node)
             mergedMail[root].append(mail)
+        # print("###########\n",n,"\n",mergedMail,"\n#################")
 
         ans = []
         for i in range(n):
@@ -123,6 +132,109 @@ class Solution:
         ans.sort()
         return ans
 
+
+if __name__ == "__main__":
+    accounts = [
+        ["John", "j1@com", "j2@com", "j3@com"],
+        ["John", "j4@com"],
+        ["Raj", "r1@com", "r2@com"],
+        ["John", "j1@com", "j5@com"],
+        ["Raj", "r2@com", "r3@com"],
+        ["Mary", "m1@com"]
+    ]
+
+    obj = Solution()
+    ans = obj.accountsMerge(accounts)
+    for acc in ans:
+        print(f"{acc[0]}: {' '.join(acc[1:])}")
+
+"""
+
+
+
+
+
+
+
+
+
+
+
+
+# """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+class DisjointSet:
+    def __init__(self , n):
+        self.parent = [i for i in range(n+1)]
+        self.rank = [0]*(n+1)
+        self.size = [1]*(n+1)
+    
+    def findUPar(self , node):
+        if self.parent[node]==node:
+            return node 
+        self.parent[node]=self.findUPar(self.parent[node])
+        return self.parent[node]
+    
+    def union_by_rank(self, u , v):
+        upu = self.findUPar(u)
+        upv= self.findUPar(v)
+        
+        if upu == upv:
+            return 
+        
+        if self.rank[upu]<self.rank[upv]:
+            self.parent[upu]=upv
+        elif self.rank[upv]<self.rank[upu]:
+            self.parent[upv]=upu 
+        else:
+            self.parent[upu]=upv
+            self.rank[upv]+=1
+    
+    def union_by_size(self , u , v):
+        upu = self.findUPar(u)
+        upv=  self.findUPar(v)
+        
+        if upu == upv:
+            return 
+        
+        if self.size[upu]<self.size[upv]:
+            self.parent[upu]=upv
+            self.size[upv]+=self.size[upu]
+        else:
+            self.parent[upv]=upu
+            self.size[upu]+=self.size[upv]
+        
+class Solution:
+    def accountsMerge(self, accounts):
+        # Code here
+        n = len(accounts)
+        ds = DisjointSet(n)
+        mapmail2node=dict()
+        
+        for i in range(n):
+            for j in range(1,len(accounts[i])):
+                mail=accounts[i][j]
+                if mail in mapmail2node:
+                    ds.union_by_rank(i,mapmail2node[mail])
+                else:
+                    mapmail2node[mail]=i
+        
+        
+        mergedmail = [[] for _ in range(n)]
+        for mail , node in mapmail2node.items():
+            upnode = ds.findUPar(node)
+            mergedmail[upnode].append(mail)
+        
+        ans=[]
+        for i in range(n):
+            if not mergedmail[i]:
+                continue
+            mergedmail[i].sort()
+            tmp = [accounts[i][0]] + mergedmail[i]
+            ans.append(tmp)
+        ans.sort()
+        return ans
+            
 
 if __name__ == "__main__":
     accounts = [
