@@ -1,3 +1,6 @@
+#User function Template for python3
+
+from typing import List
 class DisjointSet:
     def __init__(self, n):
         self.rank = [0] * (n + 1)
@@ -6,64 +9,68 @@ class DisjointSet:
     
     def find(self, node):
         if node != self.parent[node]:
-            self.parent[node] = self.find(self.parent[node])  # Path compression
+            self.parent[node] = self.find(self.parent[node])
         return self.parent[node]
     
     def union_by_rank(self, u, v):
         ulp_u = self.find(u)
         ulp_v = self.find(v)
-        if ulp_u != ulp_v:
-            if self.rank[ulp_u] < self.rank[ulp_v]:
-                self.parent[ulp_u] = ulp_v
-            elif self.rank[ulp_u] > self.rank[ulp_v]:
-                self.parent[ulp_v] = ulp_u
-            else:
-                self.parent[ulp_v] = ulp_u
-                self.rank[ulp_u] += 1
+        if ulp_u == ulp_v:
+            return False
+        if self.rank[ulp_u] < self.rank[ulp_v]:
+            self.parent[ulp_u] = ulp_v
+        elif self.rank[ulp_v] < self.rank[ulp_u]:
+            self.parent[ulp_v] = ulp_u
+        else:
+            self.parent[ulp_v] = ulp_u
+            self.rank[ulp_u] += 1
+        return True
     
     def union_by_size(self, u, v):
         ulp_u = self.find(u)
         ulp_v = self.find(v)
-        if ulp_u != ulp_v:
-            if self.size[ulp_u] < self.size[ulp_v]:
-                self.parent[ulp_u] = ulp_v
-                self.size[ulp_v] += self.size[ulp_u]
-            else:
-                self.parent[ulp_v] = ulp_u
-                self.size[ulp_u] += self.size[ulp_v]
+        if ulp_u == ulp_v:
+            return False
+        if self.size[ulp_u] < self.size[ulp_v]:
+            self.parent[ulp_u] = ulp_v
+            self.size[ulp_v] += self.size[ulp_u]
+        else:
+            self.parent[ulp_v] = ulp_u
+            self.size[ulp_u] += self.size[ulp_v]
+        return True
+
 
 class Solution:
     def __init__(self):
-        self.directions = [(-1, 0), (0, 1), (1, 0), (0, -1)]
-    
-    def is_valid(self, r, c, n, m):
-        return 0 <= r < n and 0 <= c < m
-    
-    def num_of_islands(self, n, m, operators):
-        ds = DisjointSet(n * m)
-        vis = [[0] * m for _ in range(n)]
-        cnt = 0
-        ans = []
+        self.directions = [(-1,0),(0,1),(1,0),(0,-1)]
         
-        for row, col in operators:
-            if vis[row][col] == 1:
-                ans.append(cnt)
+    def numOfIslands(self, nr: int, nc : int, operators : List[List[int]]) -> List[int]:
+        # code here
+        ds = DisjointSet(nr*nc)
+        arr = [ [0]*nc for _ in range(nr)]
+        count=0
+        ans=[]
+        for i , j in operators:
+            if arr[i][j]==1:
+                ans.append(count)
                 continue
-            vis[row][col] = 1
-            cnt += 1
-            node_no = row * m + col
-            for dr, dc in self.directions:
-                adjr, adjc = row + dr, col + dc
-                if self.is_valid(adjr, adjc, n, m) and vis[adjr][adjc] == 1:
-                    adj_node_no = adjr * m + adjc
-                    if ds.find(node_no) != ds.find(adj_node_no):
-                        cnt -= 1
-                        ds.union_by_size(node_no, adj_node_no)
-            ans.append(cnt)
-        
+            count+=1
+            arr[i][j]=1
+ 
+            node = i*nc + j
+            for di , dj in self.directions:
+                ni = i+di
+                nj = j+dj
+                if(0<=ni<nr) and (0<=nj<nc) and (arr[ni][nj]==1):
+                    adj_node = ni*nc + nj
+                    tmp_par=ds.find(adj_node)
+                    if ds.union_by_size(node,adj_node):
+                    # if ds.union_by_rank(node,adj_node):
+                        count-=1
+            ans.append(count)
         return ans
 
-# Example usage
+
 if __name__ == "__main__":
     n = 4
     m = 5
@@ -72,7 +79,10 @@ if __name__ == "__main__":
         [0, 3], [1, 3], [0, 4], [3, 2], [2, 2],
         [1, 2], [0, 2]
     ]
-    
+
     obj = Solution()
-    ans = obj.num_of_islands(n, m, operators)
+    ans = obj.numOfIslands(n, m, operators)
     print(" ".join(map(str, ans)))
+
+
+# Output: 1 1 2 1 1 2 2 2 3 3 1 1
