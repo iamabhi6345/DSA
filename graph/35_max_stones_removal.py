@@ -3,12 +3,12 @@ class DisjointSet:
         self.rank = [0] * (n + 1)
         self.parent = list(range(n + 1))
         self.size = [1] * (n + 1)
-    
+
     def find(self, node):
         if node != self.parent[node]:
             self.parent[node] = self.find(self.parent[node])
         return self.parent[node]
-    
+
     def union_by_rank(self, u, v):
         ulp_u = self.find(u)
         ulp_v = self.find(v)
@@ -21,7 +21,7 @@ class DisjointSet:
         else:
             self.parent[ulp_v] = ulp_u
             self.rank[ulp_u] += 1
-    
+
     def union_by_size(self, u, v):
         ulp_u = self.find(u)
         ulp_v = self.find(v)
@@ -33,6 +33,7 @@ class DisjointSet:
         else:
             self.parent[ulp_v] = ulp_u
             self.size[ulp_u] += self.size[ulp_v]
+
 
 class Solution:
     def maxRemove(self, stones, n):
