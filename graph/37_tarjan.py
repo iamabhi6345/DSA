@@ -2,23 +2,23 @@ from collections import defaultdict
 
 V = 7
 adj = defaultdict(list)
-time = 0  # Global variable to keep track of discovery times
+time = 0  
 
 def DFS(u, disc, low, mystack, presentInStack):
-    global time  # Use the global 'time' variable
+    global time 
     disc[u] = low[u] = time
     time += 1
     mystack.append(u)
     presentInStack[u] = True
 
     for v in adj[u]:
-        if disc[v] == -1:  # If v is not visited
+        if disc[v] == -1:  
             DFS(v, disc, low, mystack, presentInStack)
             low[u] = min(low[u], low[v])
-        elif presentInStack[v]:  # Back-edge case
+        elif presentInStack[v]:  
             low[u] = min(low[u], disc[v])
 
-    if low[u] == disc[u]:  # If u is head node of SCC
+    if low[u] == disc[u]: 
         print("SCC is:", end=" ")
         while mystack[-1] != u:
             print(mystack[-1], end=" ")
@@ -48,5 +48,4 @@ if __name__ == "__main__":
     adj[4].append(6)
     adj[5].append(6)
     adj[6].append(5)
-
     findSCCs_Tarjan()
