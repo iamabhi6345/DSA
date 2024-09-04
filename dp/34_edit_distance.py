@@ -1,9 +1,11 @@
 """  
 
 Problem statement
-You are given two strings 'S' and 'T' of lengths 'N' and 'M' respectively. Find the "Edit Distance" between the strings.
+You are given two strings 'S' and 'T' of lengths 'N' and 'M' respectively. Find the "Edit Distance" between 
+the strings.
 
-Edit Distance of two strings is the minimum number of steps required to make one string equal to the other. In order to do so, you can perform the following three operations:
+Edit Distance of two strings is the minimum number of steps required to make one string equal to the other. 
+In order to do so, you can perform the following three operations:
 
 1. Delete a character
 2. Replace a character with another one
@@ -22,9 +24,11 @@ dc
 Sample Output 1 :
 2
  Explanation For Sample Input 1 :
-In 2 operations we can make the string T to look like string S. First, insert the character 'a' to string T, which makes it "adc".
+In 2 operations we can make the string T to look like string S. First, insert the character 'a' to string T, 
+which makes it "adc".
 
-And secondly, replace the character 'd' of the string T with 'b' from the string S. This would make string T to "abc" which is also the string S. Hence, the minimum distance.
+And secondly, replace the character 'd' of the string T with 'b' from the string S. This would make string 
+T to "abc" which is also the string S. Hence, the minimum distance.
 Sample Input 2 :
 whgtdwhgtdg
 aswcfg

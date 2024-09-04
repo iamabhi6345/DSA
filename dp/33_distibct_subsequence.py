@@ -1,6 +1,7 @@
 """ 
 Problem statement
-A Subsequence of a string is the string that is obtained by deleting 0 or more letters from the string and keeping the rest of the letters in the same order.
+A Subsequence of a string is the string that is obtained by deleting 0 or more letters from the string and 
+keeping the rest of the letters in the same order.
 
 
 
@@ -21,7 +22,8 @@ Input: 'str' = “brootgroot” and 'sub' = “brt”
 
 Output: 3
 
-Explanation: The following subsequences formed by characters at given indices (0-based) of 'str' are equal to 'sub' :
+Explanation: The following subsequences formed by characters at given indices (0-based) of 'str' are 
+equal to 'sub' :
 
 str[0] = ‘b’, str[1] = ‘r’, str[4] = ‘t’
 
