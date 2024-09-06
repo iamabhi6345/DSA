@@ -4,11 +4,13 @@ Problem statement
 A Bitonic Sequence is a sequence of numbers that is first strictly increasing and then strictly decreasing.
 
 
-A strictly ascending order sequence is also considered bitonic, with the decreasing part as empty, and same for a strictly descending order sequence.
+A strictly ascending order sequence is also considered bitonic, with the decreasing part as empty, and same 
+for a strictly descending order sequence.
 
 
 
-For example, the sequences [1, 3, 5, 3, 2], [1, 2, 3, 4] are bitonic, whereas the sequences [5, 4, 1, 4, 5] and [1, 2, 2, 3] are not.
+For example, the sequences [1, 3, 5, 3, 2], [1, 2, 3, 4] are bitonic, whereas the sequences [5, 4, 1, 4, 5] 
+and [1, 2, 2, 3] are not.
 
 
 
@@ -25,7 +27,9 @@ Input: 'arr' = [1, 2, 1, 2, 1]
 
 Output: 3
 
-Explanation: The longest bitonic subsequence for this array will be [1, 2, 1]. Please note that [1, 2, 2, 1] is not a valid bitonic subsequence, because the consecutive 2's are neither strictly increasing, nor strictly decreasing.
+Explanation: The longest bitonic subsequence for this array will be [1, 2, 1]. Please note that [1, 2, 2, 1] 
+is not a valid bitonic subsequence, because the consecutive 2's are neither strictly increasing, nor 
+strictly decreasing.
 Detailed explanation ( Input/output format, Notes, Images )
 Sample Input 1 :
 5 
@@ -37,7 +41,8 @@ Sample Output 1:
 
 
 Explanation For Sample Input 1:
-The longest bitonic subsequence for this array will be [1, 2, 1]. Please note that [1, 2, 2, 1] is not a valid bitonic subsequence, because the consecutive 2's are neither strictly increasing, nor strictly decreasing.
+The longest bitonic subsequence for this array will be [1, 2, 1]. Please note that [1, 2, 2, 1] is not a 
+valid bitonic subsequence, because the consecutive 2's are neither strictly increasing, nor strictly decreasing.
 
 
 Sample Input 2 :
