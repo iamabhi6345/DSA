@@ -56,7 +56,6 @@ class Solution:
                 continue
             count+=1
             arr[i][j]=1
- 
             node = i*nc + j
             for di , dj in self.directions:
                 ni = i+di

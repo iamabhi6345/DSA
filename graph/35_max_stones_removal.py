@@ -1,3 +1,4 @@
+from typing import List
 class DisjointSet:
     def __init__(self, n):
         self.rank = [0] * (n + 1)
@@ -36,34 +37,32 @@ class DisjointSet:
 
 
 class Solution:
-    def maxRemove(self, stones, n):
-        maxRow = 0
-        maxCol = 0
+    
+
+    def removeStones(self, stones: List[List[int]]) -> int:
+        mr=0
+        mc=0
+        for x in stones:
+            mr = max(mr , x[0])
+            mc = max(mc , x[1])
         
-        # Find the maximum row and column indices
-        for stone in stones:
-            maxRow = max(maxRow, stone[0])
-            maxCol = max(maxCol, stone[1])
+        ds = DisjointSet(mr+mc+2)
+
+
+        for x in stones:
+            row=x[0]
+            col=x[1]+mr+1
+            ds.union_by_size(row , col)
+         
         
-        # Create DisjointSet with size large enough to include all rows and columns
-        ds = DisjointSet(maxRow + maxCol + 2)
-        
-        # Union operations for rows and columns
-        stoneNodes = {}
-        for stone in stones:
-            nodeRow = stone[0]
-            nodeCol = stone[1] + maxRow + 1
-            ds.union_by_size(nodeRow, nodeCol)
-            stoneNodes[nodeRow] = 1
-            stoneNodes[nodeCol] = 1
-        
-        # Count the number of disjoint sets
-        cnt = 0
-        for node in stoneNodes:
-            if ds.find(node) == node:
-                cnt += 1
-        
-        return n - cnt
+        comp=0
+        for i in range(mc+mr+2):
+            if ds.size[i]>1 and ds.parent[i]==i:
+                comp+=1
+        n= len(stones)
+        return n-comp
+   
+
 
 # Example usage
 if __name__ == "__main__":
@@ -75,5 +74,5 @@ if __name__ == "__main__":
     ]
     
     obj = Solution()
-    ans = obj.maxRemove(stones, n)
+    ans = obj.removeStones(stones)
     print(f"The maximum number of stones we can remove is: {ans}")
