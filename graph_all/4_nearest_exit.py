@@ -87,7 +87,7 @@ from collections import deque
 class Solution:
     def __init__(self):
         self.directions=[(0,-1) , (1,0), (0,1), (-1,0)]
- 
+
 
     def nearestExit(self, maze: List[List[str]], entrance: List[int]) -> int:
         i = entrance[0]

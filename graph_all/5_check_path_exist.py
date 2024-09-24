@@ -83,7 +83,7 @@ class DisjointSet:
         else:
             self.parent[upu]=upv
             self.rank[upv]+=1
-    
+
     def union_by_size(self , u , v):
         upu = self.findUPar(u)
         upv = self.findUPar(v)

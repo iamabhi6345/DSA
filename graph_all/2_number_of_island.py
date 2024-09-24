@@ -49,7 +49,6 @@ class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
         r = len(grid)
         c = len(grid[0])
-
         vis = [[False]*c for _ in range(r)]
         ans=0
 
