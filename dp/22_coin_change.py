@@ -28,11 +28,42 @@ Sample Output 2:
 
 
 """
+def solve( arr , tar):
+    nr = len(arr)
+    nc = tar+1
+
+    dp= [ [0]*nc for _  in range(nr) ]
+
+
+    for j in range(nc):
+        if j>=arr[0] and j%arr[0]==0:
+            dp[0][j]=1
+    
+    for i in range(nr):
+        dp[i][0]=1
+    
+    for i in range(1,nr):
+        for j in range(nc):
+            nottake = dp[i-1][j]
+            take=0
+            if j>=arr[i]:
+                take = dp[i][j-arr[i]]
+            dp[i][j]=take+nottake
+    return dp[nr-1][tar]
+
+    
+
+
+def countWaysToMakeChange(denominations, value) :
+    
+	# Your code goes here
+    return solve ( denominations, value) 
 
 
 
 
 
+# ?????????????????????????????????????????
 from sys import stdin,setrecursionlimit
 setrecursionlimit(10**7)
 

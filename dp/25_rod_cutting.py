@@ -64,6 +64,58 @@ from sys import stdin
 import sys
 
 
+
+
+from sys import stdin
+import sys
+
+def solve(arr , tar):
+    nr = len(arr)
+    nc = tar+1
+
+    dp= [ [0]*nc for _ in range(nr)]
+
+    for j in range(nc):
+            dp[0][j] = (j)*arr[0]
+    
+    for i in range(1 , nr):
+        for j in range(nc):
+            nottake = dp[i-1][j]
+            take=0
+            if j>=(i+1):
+                take = arr[i]+ dp[i][j-i-1]
+            dp[i][j]=max(take , nottake)
+
+    return dp[nr-1][tar]
+
+
+def cutRod(price, n):
+
+    # Write your code here.
+    return solve(price , n)
+
+# Taking input using fast I/O.
+def takeInput():
+    n = int(input())
+    price = list(map(int, input().strip().split(" ")))
+    return price, n
+
+
+# Main.
+t = int(input())
+while t:
+    price, n = takeInput()
+    print(cutRod(price, n))
+    t = t-1
+
+
+
+
+
+
+
+# ?????????????????????????????????????????????????????????????????
+
 def solve(ind , length , dp , arr):
     if length==0:
         return 0

@@ -61,6 +61,79 @@ Time Limit: 1sec
 
 
 
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+from typing import List
+
+mod = 1e9 + 7
+def solve(arr , k):
+    nc=k+1
+    nr = len(arr)
+
+    dp=[ [0]*nc for _ in range(nr)  ]
+
+    if arr[0]<=k:
+        dp[0][arr[0]]=1
+
+    if arr[0]==0:
+        dp[0][0]=2
+    else:
+        dp[0][0]=1
+
+    
+    
+    for i in range(1, nr):
+        for  j in range(nc):
+            nottake=dp[i-1][j]
+            take=0
+            if arr[i]<=j:
+                take=dp[i-1][j-arr[i]]
+
+            dp[i][j]= int((take +nottake)%mod)
+    
+    return dp[nr-1][k]
+
+
+    
+
+
+
+def countPartitions(n: int, d: int, arr: List[int]) -> int:
+    # write your code here\
+    total = sum(arr)
+    if total-d <0:
+        return 0
+    if (total-d) %2==1:
+        return 0
+    
+    k= ( total - d) //2
+
+    return solve(arr , k)
+
+
+
+# ??????????????????????????????????????????????????????????????????????
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 from typing import List
 
 def solve(arr ):

@@ -7,6 +7,57 @@ import sys
 ## Print output as specified in the question.
 
 
+# ??????????????????????????
+def solve(  w , v , tar ):
+    nr=len(w)
+    nc=tar+1
+
+    dp=[ [0]*nc  for _ in range(nr)  ]
+
+    for j in range(nc):
+        if j>=w[0]:
+            dp[0][j]=v[0]
+
+
+    for i in range(1,nr):
+        for j in range(nc):
+            nottake = dp[i-1][j]
+            take=-1e8
+            if j >= w[i]:
+                take = v[i]+dp[i-1][j-w[i]]
+            dp[i][j]=max(take , nottake)
+    
+    return dp[nr-1][tar]
+
+
+
+
+
+
+t= int(sys.stdin.readline().rstrip())
+for _ in range(t):
+    n= int(sys.stdin.readline().rstrip())
+    w= list(map(int,sys.stdin.readline().rstrip().split(" ")))
+    v= list(map(int,sys.stdin.readline().rstrip().split(" ")))
+    lim = int(sys.stdin.readline().rstrip())
+
+    print(solve(w , v , lim ))
+    
+# ?????????????????????????????????????????????????????????????????????
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 def solve( ind , tar , dp , w , v ):
     if (ind==0):
         if (w[0] <= tar):

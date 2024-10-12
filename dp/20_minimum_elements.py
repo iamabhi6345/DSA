@@ -63,6 +63,50 @@ from math import *
 
 from typing import List
 
+
+def solve(num , tar):
+    nr = len(num)
+    nc = tar+1
+
+    dp= [  [1e9]*nc for _ in range(nr) ]
+
+    for i in range(nr):
+        dp[i][0]=0
+    
+    for j in range(nc):
+        if j>=num[0]  and j%num[0]==0:
+            dp[0][j]=j//num[0]
+    
+    for i in range( 1 ,nr):
+        for j in range(nc):
+            nottake = dp[i-1][j]
+            take = 1e9
+            if j >=num[i]:
+                take = 1 + dp[i][j-num[i]]
+            dp[i][j]=min(take , nottake)
+    if dp[nr-1][tar]>=1e9:
+        return -1
+    return dp[nr-1][tar]
+
+
+def minimumElements(num, x):
+    # Write your code here.
+    if x==0:
+        return 0
+    return solve(num , x)
+
+
+# ??????????????????????????????????????????????????????
+
+
+
+
+
+
+
+
+
+
 def solve (ind , tar , dp , arr):
     if ind==0:
         if tar % arr[0]==0:

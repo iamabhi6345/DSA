@@ -25,8 +25,8 @@ Output: [2,3,4,-1,4]
  """
  
  
- class Solution:
-        def nextGreaterElements(self, nums: List[int]) -> List[int]:
+class Solution:
+    def nextGreaterElements(self, nums: List[int]) -> List[int]:
         st=list()
         n = len(nums)
         ans=[-1]*n
