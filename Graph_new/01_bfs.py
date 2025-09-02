@@ -25,6 +25,33 @@ class Solution:
         
         return bfs
             
-        
+
+# =================================================================================================================================
+"""
+
+✅ Time Complexity
+
+Each vertex (node) is:
+Added to queue once
+Removed from queue once
+Marked visited once
+→ O(V)
+
+Each edge is checked once in the adjacency list.
+→ O(E)
+
+📌 Total = O(V + E) (this is optimal BFS complexity).
+
+✅ Space Complexity
+
+vis array → O(V)
+bfs result list → O(V)
+q (queue) → can hold up to O(V) elements in worst case
+Adjacency list storage (input adj) → O(V + E)
+
+📌 Auxiliary space = O(V)
+📌 Overall space = O(V + E)
+
+"""
         
                 
